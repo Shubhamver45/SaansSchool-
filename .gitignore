@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+.aws-sam/
+
+# Environment and Secrets (Never commit secrets!)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Node & Build artifacts
+node_modules/
+dist/
+build/
+.DS_Store
+.env.local
+
+# IDE
+.vscode/
+.idea/
+
+# AWS SAM
+.aws-sam/
+samconfig.toml
