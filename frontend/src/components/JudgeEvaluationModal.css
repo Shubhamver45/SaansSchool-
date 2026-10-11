@@ -450,6 +450,36 @@
   }
 }
 
+@media (max-width: 600px) {
+  .judge-modal-backdrop {
+    padding: 8px;
+  }
+  .judge-modal-window {
+    border-radius: 6px;
+    max-height: 94vh;
+  }
+  .judge-modal-header {
+    padding: 12px 14px;
+  }
+  .judge-modal-title {
+    font-size: 1.1rem;
+  }
+  .judge-criteria-tabs {
+    grid-template-columns: 1fr 1fr;
+  }
+  .btn-crit-tab {
+    padding: 10px 10px;
+    gap: 8px;
+  }
+  .crit-num {
+    font-size: 1rem;
+    width: 20px;
+  }
+  .judge-modal-content {
+    padding: 14px;
+  }
+}
+
 /* Live AWS Cloud Verification Strip */
 .live-aws-status-strip {
   display: flex;
