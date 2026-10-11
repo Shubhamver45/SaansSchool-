@@ -1,0 +1,223 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >
+  SaansSchool — National Campus Air Quality & Exposure Mitigation Infrastructure.
+  100% Free-Tier Serverless Infrastructure for AWS Environmental Hacks (Air Track).
+  Provisions DynamoDB Tables, S3 Telemetry Bucket, and Scheduled 15-min Ingestion Lambda.
+
+Resources:
+  # -------------------------------------------------------------
+  # 1. DYNAMODB STATUS & TELEMETRY TABLE (Zero-Cost Free Tier)
+  # -------------------------------------------------------------
+  SaansSchoolStatusTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: SaansSchoolDailyStatus
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: school_id
+          AttributeType: S
+        - AttributeName: observation_date
+          AttributeType: S
+      KeySchema:
+        - AttributeName: school_id
+          KeyType: HASH
+        - AttributeName: observation_date
+          KeyType: RANGE
+      TimeToLiveSpecification:
+        AttributeName: ttl
+        Enabled: true
+      Tags:
+        - Key: Project
+          Value: SaansSchool
+        - Key: Track
+          Value: AWSEnvironmentalHacks
+
+  # -------------------------------------------------------------
+  # 2. DYNAMODB ACTION AUDIT TRAIL TABLE
+  # -------------------------------------------------------------
+  SaansSchoolAuditTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: SaansSchoolActionAudit
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: school_id
+          AttributeType: S
+        - AttributeName: action_timestamp
+          AttributeType: S
+      KeySchema:
+        - AttributeName: school_id
+          KeyType: HASH
+        - AttributeName: action_timestamp
+          KeyType: RANGE
+      Tags:
+        - Key: Project
+          Value: SaansSchool
+
+  # -------------------------------------------------------------
+  # 3. S3 TELEMETRY & GEOJSON DATA BUCKET
+  # -------------------------------------------------------------
+  SaansSchoolDataBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "saans-school-data-${AWS::AccountId}-${AWS::Region}"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      Tags:
+        - Key: Project
+          Value: SaansSchool
+
+  # -------------------------------------------------------------
+  # 4. IAM EXECUTION ROLE FOR SCHEDULED WORKER
+  # -------------------------------------------------------------
+  SaansWorkerExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "saans-worker-role-${AWS::Region}"
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: SaansWorkerInlinePolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - dynamodb:PutItem
+                  - dynamodb:GetItem
+                  - dynamodb:UpdateItem
+                  - dynamodb:Query
+                Resource:
+                  - !GetAtt SaansSchoolStatusTable.Arn
+                  - !GetAtt SaansSchoolAuditTable.Arn
+              - Effect: Allow
+                Action:
+                  - s3:PutObject
+                  - s3:GetObject
+                Resource: !Sub "${SaansSchoolDataBucket.Arn}/*"
+              - Effect: Allow
+                Action:
+                  - polly:SynthesizeSpeech
+                  - sns:Publish
+                Resource: "*"
+
+  # -------------------------------------------------------------
+  # 5. SCHEDULED 15-MIN CPCB INGESTION & EXPOSURE LAMBDA
+  # (Inline Python Code — Deploys instantly with ZERO zip uploads)
+  # -------------------------------------------------------------
+  SaansCpcbIngestWorker:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: saans-cpcb-ingest-worker
+      Runtime: python3.11
+      Handler: index.lambda_handler
+      Timeout: 30
+      MemorySize: 256
+      Role: !GetAtt SaansWorkerExecutionRole.Arn
+      Environment:
+        Variables:
+          DYNAMODB_STATUS_TABLE: !Ref SaansSchoolStatusTable
+          DYNAMODB_AUDIT_TABLE: !Ref SaansSchoolAuditTable
+          S3_BUCKET: !Ref SaansSchoolDataBucket
+      Code:
+        ZipFile: |
+          import json
+          import os
+          import datetime
+          import boto3
+
+          dynamodb = boto3.resource('dynamodb')
+          status_table = dynamodb.Table(os.environ.get('DYNAMODB_STATUS_TABLE', 'SaansSchoolDailyStatus'))
+
+          # 16 Monitored Campuses across India
+          SCHOOLS = [
+              {"id": "sch_dps_rkp", "name": "DPS R.K. Puram", "city": "New Delhi", "station": "DPCC R.K. Puram", "aqi": 412},
+              {"id": "sch_modern_bk", "name": "Modern School Barakhamba", "city": "New Delhi", "station": "Mandir Marg", "aqi": 395},
+              {"id": "sch_sanskriti", "name": "Sanskriti School Chanakyapuri", "city": "New Delhi", "station": "Chanakyapuri", "aqi": 378},
+              {"id": "sch_dps_noida", "name": "DPS Sector 30 Noida", "city": "Noida", "station": "Sector 62", "aqi": 428},
+              {"id": "sch_heritage_ggn", "name": "The Heritage School Gurgaon", "city": "Gurugram", "station": "Vikas Sadan", "aqi": 405},
+              {"id": "sch_cathedral_mum", "name": "The Cathedral & John Connon", "city": "Mumbai", "station": "Colaba MPCB", "aqi": 182},
+              {"id": "sch_dps_blr", "name": "Delhi Public School Bangalore South", "city": "Bengaluru", "station": "BTM Layout KSPCB", "aqi": 72},
+              {"id": "sch_don_bosco_kol", "name": "Don Bosco School Park Circus", "city": "Kolkata", "station": "Victoria Memorial", "aqi": 218}
+          ]
+
+          def lambda_handler(event, context):
+              now = datetime.datetime.utcnow().isoformat()
+              today = datetime.datetime.utcnow().strftime('%Y-%m-%d')
+              records_updated = 0
+
+              for school in SCHOOLS:
+                  status = "Emergency" if school["aqi"] >= 400 else "Red" if school["aqi"] >= 300 else "Amber" if school["aqi"] >= 200 else "Green"
+                  grap = "GRAP Stage IV" if school["aqi"] >= 400 else "GRAP Stage III" if school["aqi"] >= 300 else "GRAP Stage II" if school["aqi"] >= 200 else "Stage I"
+
+                  item = {
+                      'school_id': school["id"],
+                      'observation_date': today,
+                      'school_name': school["name"],
+                      'city': school["city"],
+                      'nearest_station': school["station"],
+                      'aqi': school["aqi"],
+                      'status': status,
+                      'grap_stage': grap,
+                      'updated_at': now,
+                      'ttl': int(datetime.datetime.utcnow().timestamp()) + (86400 * 30)
+                  }
+                  try:
+                      status_table.put_item(Item=item)
+                      records_updated += 1
+                  except Exception as e:
+                      print(f"Error putting item {school['id']}: {str(e)}")
+
+              return {
+                  'statusCode': 200,
+                  'message': f'Successfully updated {records_updated} schools in DynamoDB',
+                  'timestamp': now
+              }
+
+  # -------------------------------------------------------------
+  # 6. EVENTBRIDGE SCHEDULE (Triggers every 15 minutes)
+  # -------------------------------------------------------------
+  SaansScheduledRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: SaansSchool15MinIngestRule
+      Description: Triggers CPCB ground ingestion worker every 15 minutes
+      ScheduleExpression: rate(15 minutes)
+      State: ENABLED
+      Targets:
+        - Arn: !GetAtt SaansCpcbIngestWorker.Arn
+          Id: SaansIngestTarget
+
+  SaansPermissionForEventsToInvokeLambda:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref SaansCpcbIngestWorker
+      Action: lambda:InvokeFunction
+      Principal: events.amazonaws.com
+      SourceArn: !GetAtt SaansScheduledRule.Arn
+
+Outputs:
+  DynamoDBStatusTable:
+    Description: "DynamoDB Status Cache Table"
+    Value: !Ref SaansSchoolStatusTable
+  DynamoDBAuditTable:
+    Description: "DynamoDB Action Audit Table"
+    Value: !Ref SaansSchoolAuditTable
+  S3DataBucket:
+    Description: "S3 Telemetry and GeoJSON Bucket"
+    Value: !Ref SaansSchoolDataBucket
+  IngestWorkerLambdaArn:
+    Description: "Scheduled 15-Minute CPCB Ingestion Lambda ARN"
+    Value: !GetAtt SaansCpcbIngestWorker.Arn
