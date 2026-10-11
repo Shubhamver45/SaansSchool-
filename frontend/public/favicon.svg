@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Background shield tile with micro border -->
+  <rect width="64" height="64" rx="12" fill="#090d16" />
+  <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="11.25" stroke="#1e293b" stroke-width="1.5" />
+
+  <!-- Ambient Clean Air Glow -->
+  <circle cx="32" cy="32" r="18" fill="#10b981" fill-opacity="0.12" />
+
+  <!-- Outer Protective Defense Arc (School & Community Shield) -->
+  <path
+    d="M32 9L49 16.5V31C49 41.5 41.8 50.8 32 54C22.2 50.8 15 41.5 15 31V16.5L32 9Z"
+    stroke="#334155"
+    stroke-width="1.75"
+    stroke-linejoin="round"
+  />
+
+  <!-- School Gable / Architectural Pediment -->
+  <path
+    d="M23 20L32 15L41 20"
+    stroke="#f8fafc"
+    stroke-width="2.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Left Respiratory Airway / Saans Inhalation Curve (Cyan Clean Air Vector) -->
+  <path
+    d="M26 23C23.2 24.8 21.5 28.2 21.5 32C21.5 36.8 25 40.5 29 40.5C31.2 40.5 32 39 32 36.5V27"
+    stroke="#06b6d4"
+    stroke-width="2.5"
+    stroke-linecap="round"
+  />
+
+  <!-- Right Respiratory Airway / Saans Exhalation Filter Curve (Emerald Active Shield) -->
+  <path
+    d="M38 23C40.8 24.8 42.5 28.2 42.5 32C42.5 36.8 39 40.5 35 40.5C32.8 40.5 32 39 32 36.5"
+    stroke="#10b981"
+    stroke-width="2.5"
+    stroke-linecap="round"
+  />
+
+  <!-- Central Telemetry Core / Ground Sensor Node -->
+  <circle cx="32" cy="27" r="3" fill="#10b981" />
+  <circle cx="32" cy="27" r="1.2" fill="#ffffff" />
+
+  <!-- Active Inhalation Waves -->
+  <path
+    d="M28.5 24C29.5 23.2 30.7 22.8 32 22.8C33.3 22.8 34.5 23.2 35.5 24"
+    stroke="#38bdf8"
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-opacity="0.85"
+  />
+
+  <!-- Base Foundation Bar -->
+  <line x1="26" y1="45" x2="38" y2="45" stroke="#475569" stroke-width="2" stroke-linecap="round" />
+</svg>
