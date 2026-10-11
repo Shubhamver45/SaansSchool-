@@ -94,7 +94,7 @@ export function SaansSchoolPage() {
 
   // Debounced Indian School Search
   useEffect(() => {
-    if (!searchQuery || searchQuery.trim().length < 3) {
+    if (!searchQuery || searchQuery.trim().length < 2) {
       setSearchResults([]);
       setShowSearchDropdown(false);
       return;
@@ -110,7 +110,7 @@ export function SaansSchoolPage() {
       } finally {
         setIsSearching(false);
       }
-    }, 320);
+    }, 280);
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
@@ -158,9 +158,13 @@ export function SaansSchoolPage() {
 
   const handleSelectSearchedSchool = (schoolItem) => {
     // Add to schools list if not already present
-    if (!schools.some(s => s.id === schoolItem.id)) {
-      setSchools([schoolItem, ...schools]);
-    }
+    setSchools(prev => {
+      if (!prev.some(s => s.id === schoolItem.id)) {
+        return [schoolItem, ...prev];
+      }
+      return prev;
+    });
+    setActiveZone('All');
     setSelectedSchoolId(schoolItem.id);
     setShowSearchDropdown(false);
     setSearchQuery('');
@@ -279,7 +283,7 @@ export function SaansSchoolPage() {
               <input
                 type="text"
                 className="search-school-input"
-                placeholder="Search ANY school, college, or campus in India (Delhi, Mumbai, Bengaluru, Kolkata...)"
+                placeholder="Search ANY school, college, or university in India (e.g. IIT Bombay, KV, DU, Loyola, St. Xavier's, DPS...)"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => searchResults.length > 0 && setShowSearchDropdown(true)}
@@ -299,7 +303,7 @@ export function SaansSchoolPage() {
             {/* Dropdown with live results */}
             {showSearchDropdown && searchResults.length > 0 && (
               <div className="search-dropdown-menu">
-                <div className="dropdown-title">Matching Indian Schools & Campuses</div>
+                <div className="dropdown-title">Matching Indian Institutions ({searchResults.length} Found • Real Telemetry)</div>
                 {searchResults.map((item) => (
                   <div
                     key={item.id}
@@ -308,8 +312,11 @@ export function SaansSchoolPage() {
                   >
                     <School size={16} className="text-blue" />
                     <div className="search-item-info">
-                      <strong className="search-item-name">{item.short_name}</strong>
-                      <span className="search-item-sub">{item.name}</span>
+                      <div className="search-item-name-row">
+                        <strong className="search-item-name">{item.short_name || item.name}</strong>
+                        {item.zone && <span className="search-zone-pill">{item.zone}</span>}
+                      </div>
+                      <span className="search-item-sub">{item.name} • {item.city}</span>
                     </div>
                   </div>
                 ))}
@@ -350,8 +357,7 @@ export function SaansSchoolPage() {
           </div>
         </div>
 
-        {/* Pan-India Pilot Campus Switcher Strip with Zone Filter */}
-        {/* Sleek Executive Campus Selector Strip */}
+        {/* Pan-India Campus Switcher Strip with Zone Filter */}
         <div className="campus-switcher-subbar">
           <div className="container subbar-flex">
             <div className="subbar-left-controls">
@@ -363,10 +369,10 @@ export function SaansSchoolPage() {
                   onChange={(e) => setSelectedSchoolId(e.target.value)}
                 >
                   {schools
-                    .filter(sch => activeZone === 'All' || sch.zone === activeZone || (activeZone === 'East' && (sch.zone === 'East' || sch.zone === 'Central')))
+                    .filter(sch => activeZone === 'All' || sch.zone === activeZone || sch.id === selectedSchoolId)
                     .map((sch) => (
                       <option key={sch.id} value={sch.id}>
-                        {sch.short_name || sch.name} — {sch.city} ({sch.state})
+                        {sch.short_name || sch.name} — {sch.city} ({sch.state || sch.zone})
                       </option>
                     ))}
                 </select>
@@ -374,7 +380,7 @@ export function SaansSchoolPage() {
 
               <div className="zone-filter-group">
                 <div className="zone-pill-buttons">
-                  {['All', 'North', 'West', 'South', 'East'].map((z) => (
+                  {['All', 'North', 'West', 'South', 'East', 'Central'].map((z) => (
                     <button
                       key={z}
                       className={`btn-zone-filter ${activeZone === z ? 'active' : ''}`}

@@ -776,7 +776,7 @@ INDOOR_GUIDANCE_TIPS = [
 # Dynamic School Geocoding Search (Allows Searching ANY School in India)
 async def search_indian_schools(query: str) -> List[Dict[str, Any]]:
     """Searches OpenStreetMap Nominatim and local pilot directory for schools matching query."""
-    if not query or len(query.strip()) < 3:
+    if not query or len(query.strip()) < 2:
         return []
     
     q_clean = query.strip()
@@ -791,10 +791,16 @@ async def search_indian_schools(query: str) -> List[Dict[str, Any]]:
                 seen_names.add(s["name"])
                 results.append(s)
 
-    # 2. Query Nominatim with acronym expansion (DPS -> Delhi Public School, KV -> Kendriya Vidyalaya)
-    expanded = re.sub(r'\bdps\b', 'Delhi Public School', q_clean, flags=re.IGNORECASE)
+    # 2. Query Nominatim with acronym expansion
+    expanded = re.sub(r'\biit\b', 'Indian Institute of Technology', q_clean, flags=re.IGNORECASE)
+    expanded = re.sub(r'\bnit\b', 'National Institute of Technology', expanded, flags=re.IGNORECASE)
+    expanded = re.sub(r'\biim\b', 'Indian Institute of Management', expanded, flags=re.IGNORECASE)
+    expanded = re.sub(r'\bbits\b', 'Birla Institute of Technology and Science', expanded, flags=re.IGNORECASE)
     expanded = re.sub(r'\bkv\b', 'Kendriya Vidyalaya', expanded, flags=re.IGNORECASE)
+    expanded = re.sub(r'\bdps\b', 'Delhi Public School', expanded, flags=re.IGNORECASE)
     expanded = re.sub(r'\bdav\b', 'DAV Public School', expanded, flags=re.IGNORECASE)
+    expanded = re.sub(r'\bdu\b', 'Delhi University', expanded, flags=re.IGNORECASE)
+    expanded = re.sub(r'\bpu\b', 'Panjab University', expanded, flags=re.IGNORECASE)
 
     queries_to_try = [q_clean]
     if expanded.lower() != q_lower:
@@ -806,7 +812,7 @@ async def search_indian_schools(query: str) -> List[Dict[str, Any]]:
         async with httpx.AsyncClient(timeout=5.0) as client:
             for candidate_q in queries_to_try:
                 encoded_q = urllib.parse.quote(candidate_q)
-                url = f"https://nominatim.openstreetmap.org/search?q={encoded_q}&countrycodes=in&format=json&limit=5"
+                url = f"https://nominatim.openstreetmap.org/search?q={encoded_q}&countrycodes=in&format=json&limit=8"
                 resp = await client.get(url, headers=headers)
                 if resp.status_code == 200:
                     items = resp.json()
@@ -818,23 +824,25 @@ async def search_indian_schools(query: str) -> List[Dict[str, Any]]:
                         name_parts = disp_name.split(",")
                         short_title = name_parts[0].strip() if name_parts else candidate_q
                         city = name_parts[1].strip() if len(name_parts) > 1 else "India"
-                        s_id = f"sch_dyn_{int(time.time()*1000)}_{len(results)}"
+                        lat_val = float(item["lat"])
+                        lon_val = float(item["lon"])
+                        s_id = f"sch_osm_{lat_val:.4f}_{lon_val:.4f}"
                         sch_obj = {
                             "id": s_id,
                             "name": disp_name,
                             "short_name": short_title,
                             "city": city,
                             "state": name_parts[-2].strip() if len(name_parts) > 2 else "India",
-                            "lat": float(item["lat"]),
-                            "lon": float(item["lon"]),
-                            "students": 2000,
-                            "principal": "School Principal",
+                            "lat": lat_val,
+                            "lon": lon_val,
+                            "students": 2400,
+                            "principal": "Dean / Principal's Office",
                             "email": "principal@school.edu.in",
                             "outdoor_activities": "Sports, Recess, Assembly",
                         }
                         _DYNAMIC_SCHOOLS[s_id] = sch_obj
                         results.append(sch_obj)
-                if len(results) >= 6:
+                if len(results) >= 8:
                     break
     except Exception as e:
         print(f"School search error: {e}")

@@ -82,6 +82,9 @@ export const fetchAwsArchitecture = () =>
 import { 
   FALLBACK_SCHOOLS, 
   getFallbackSchoolStatus, 
+  getDynamicSchoolStatusLive,
+  searchIndianSchoolsLive,
+  registerDynamicSchool,
   getFallbackCommute, 
   getFallbackCADR, 
   getFallbackTrajectory 
@@ -95,20 +98,32 @@ export const fetchSaansSchools = () =>
     .then(r => r.data)
     .catch(() => ({ schools: FALLBACK_SCHOOLS }));
 
-export const searchSaansSchools = (query) =>
-  api.get(`/saans/schools/search?q=${encodeURIComponent(query)}`)
-    .then(r => r.data)
-    .catch(() => ({
-      results: FALLBACK_SCHOOLS.filter(s => 
-        s.name.toLowerCase().includes(query.toLowerCase()) || 
-        s.city.toLowerCase().includes(query.toLowerCase())
-      )
-    }));
+export const searchSaansSchools = async (query) => {
+  if (!query || query.trim().length < 2) return { results: [] };
+  try {
+    const res = await api.get(`/saans/schools/search?q=${encodeURIComponent(query)}`);
+    if (res.data?.results && res.data.results.length > 0) {
+      res.data.results.forEach(s => registerDynamicSchool(s));
+      return res.data;
+    }
+  } catch (err) {
+    // Backend offline / Vercel static deployment
+  }
+  const liveResults = await searchIndianSchoolsLive(query);
+  return { results: liveResults };
+};
 
-export const fetchSaansSchoolStatus = (schoolId) =>
-  api.get(`/saans/school/${encodeURIComponent(schoolId)}`)
-    .then(r => r.data)
-    .catch(() => getFallbackSchoolStatus(schoolId));
+export const fetchSaansSchoolStatus = async (schoolId) => {
+  try {
+    const res = await api.get(`/saans/school/${encodeURIComponent(schoolId)}`);
+    if (res.data && res.data.school) {
+      return res.data;
+    }
+  } catch (err) {
+    // Backend offline / Vercel static deployment
+  }
+  return await getDynamicSchoolStatusLive(schoolId);
+};
 
 export const toggleSaansSchoolAction = (schoolId, actionId, completed) =>
   api.post(`/saans/school/${encodeURIComponent(schoolId)}/action`, {

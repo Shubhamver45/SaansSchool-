@@ -221,6 +221,22 @@
   text-overflow: ellipsis;
 }
 
+.search-item-name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.search-zone-pill {
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+  background: #e0f2fe;
+  color: #0369a1;
+  text-transform: uppercase;
+}
+
 /* Right Header Meta */
 .header-meta-actions {
   display: flex;
