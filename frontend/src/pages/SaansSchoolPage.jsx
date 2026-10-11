@@ -494,11 +494,11 @@ export function SaansSchoolPage() {
                 </p>
 
                 {/* Modifiers Pill if forecast worsening or fires upwind */}
-                {statusData.status.modifiers && statusData.status.modifiers.length > 0 && (
+                {statusData.status?.modifiers && statusData.status.modifiers.length > 0 && (
                   <div className="status-modifier-box">
                     <AlertTriangle size={16} className="text-amber" />
                     <div>
-                      {statusData.status.modifiers.map((m, idx) => (
+                      {(statusData.status?.modifiers || []).map((m, idx) => (
                         <p key={idx} className="mod-line">{m}</p>
                       ))}
                     </div>
@@ -608,7 +608,7 @@ export function SaansSchoolPage() {
                 </div>
 
                 <div className="checklist-items-stack">
-                  {statusData.status.actions.map((act) => {
+                  {(statusData.status?.actions || []).map((act) => {
                     const isChecked = completedActions.includes(act.id);
                     return (
                       <div
@@ -844,9 +844,9 @@ export function SaansSchoolPage() {
                 </div>
 
                 {/* Hourly Timeline */}
-                {statusData.air.forecast_trend && statusData.air.forecast_trend.length > 0 && (
+                {statusData.air?.forecast_trend && statusData.air.forecast_trend.length > 0 && (
                   <div className="hourly-timeline-grid">
-                    {statusData.air.forecast_trend.slice(0, 14).map((pt, i) => {
+                    {(statusData.air?.forecast_trend || []).slice(0, 14).map((pt, i) => {
                       const hourStr = pt.time.split('T')[1] || pt.time;
                       return (
                         <div key={i} className="timeline-hour-card">
@@ -869,7 +869,7 @@ export function SaansSchoolPage() {
                 <div className="indoor-protocols-section">
                   <h3 className="indoor-section-title">Campus Indoor Air Operational Protocol</h3>
                   <div className="indoor-rules-grid">
-                    {statusData.indoor_tips.map((tip, idx) => (
+                    {(statusData.indoor_tips || []).map((tip, idx) => (
                       <div key={idx} className="indoor-rule-card">
                         <span className="rule-num">0{idx + 1}</span>
                         <div>
