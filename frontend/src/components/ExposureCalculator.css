@@ -1,0 +1,315 @@
+/* ExposureCalculator Light Theme CSS */
+.exposure-card {
+  padding: 26px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.exposure-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.exposure-title-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.exposure-icon-bubble {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #eff6ff;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.exposure-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.exposure-subtitle {
+  font-size: 0.84rem;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.exposure-controls-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1.5fr 1fr;
+  gap: 20px;
+  padding: 18px 20px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  align-items: center;
+}
+
+.control-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.control-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.control-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.control-value-badge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #2563eb;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+}
+
+.exposure-slider {
+  width: 100%;
+  accent-color: #2563eb;
+  cursor: pointer;
+}
+
+.slider-markers {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  color: #94a3b8;
+  font-family: var(--font-mono);
+}
+
+.activity-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+
+.activity-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.activity-btn:hover {
+  border-color: #cbd5e1;
+}
+
+.activity-btn.active {
+  background: #eff6ff;
+  border-color: #3b82f6;
+}
+
+.activity-btn.active .act-name {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.act-name {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.act-rate {
+  font-size: 0.66rem;
+  color: #64748b;
+  font-family: var(--font-mono);
+}
+
+.n95-toggle-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.toggle-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.toggle-title {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.toggle-desc {
+  display: block;
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+.btn-toggle {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-family: var(--font-main);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid;
+  transition: var(--transition);
+  margin-top: 6px;
+}
+
+.btn-toggle.on {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #065f46;
+}
+
+.btn-toggle.off {
+  background: #ffffff;
+  border-color: #e2e8f0;
+  color: #64748b;
+}
+
+/* Results Bento */
+.exposure-results-bento {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.2fr;
+  gap: 16px;
+}
+
+.result-metric-card {
+  padding: 18px 20px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.result-metric-card.cig-card {
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+.metric-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.metric-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b;
+  letter-spacing: 0.04em;
+}
+
+.metric-cig-icon {
+  font-size: 1.2rem;
+}
+
+.cig-number-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 10px 0 6px;
+}
+
+.cig-number {
+  font-size: 2.6rem;
+  font-weight: 800;
+  font-family: var(--font-main);
+  line-height: 1;
+  color: #b45309;
+}
+
+.cig-number.text-brand {
+  color: #2563eb;
+}
+
+.cig-unit {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.metric-desc {
+  font-size: 0.78rem;
+  color: #475569;
+  line-height: 1.4;
+}
+
+.n95-benefit-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  margin-top: 8px;
+}
+
+.n95-benefit-tag.good {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.n95-benefit-tag.warning {
+  background: #fff7ed;
+  color: #9a3412;
+  border: 1px solid #fed7aa;
+}
+
+.stat-subrow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.76rem;
+  color: #64748b;
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.verdict-heading {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 8px 0 6px;
+}
+
+@media (max-width: 1024px) {
+  .exposure-controls-grid {
+    grid-template-columns: 1fr;
+  }
+  .exposure-results-bento {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,164 @@
+/* PollutantCard Light CSS */
+.pollutant-card {
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 16px;
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+.pollutant-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.pollutant-badge-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.pollutant-symbol {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+
+.pollutant-fullname {
+  font-size: 0.72rem;
+  color: #64748b;
+  font-weight: 500;
+  margin-top: 1px;
+}
+
+.pollutant-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.status-safe {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.status-warning {
+  background: #fffbeb;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+.status-elevated {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.status-hazardous {
+  background: #fff1f2;
+  color: #881337;
+  border: 1px solid #fecdd3;
+}
+
+.pollutant-value-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.pollutant-reading {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.reading-number {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #0f172a;
+  font-family: var(--font-main);
+  line-height: 1;
+}
+
+.reading-unit {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.pollutant-who-ref {
+  font-size: 0.74rem;
+  color: #64748b;
+  display: flex;
+  gap: 4px;
+}
+
+.who-val {
+  font-weight: 700;
+  color: #334155;
+}
+
+.pollutant-bar-container {
+  margin-bottom: 10px;
+}
+
+.pollutant-bar-track {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  background: #f1f5f9;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.pollutant-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.safe-limit-marker {
+  position: absolute;
+  left: 33.3%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #94a3b8;
+  z-index: 2;
+}
+
+.bar-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  color: #94a3b8;
+  margin-top: 4px;
+  font-family: var(--font-mono);
+}
+
+.marker-label {
+  color: #64748b;
+  font-weight: 600;
+}
+
+.pollutant-desc {
+  font-size: 0.74rem;
+  color: #64748b;
+  line-height: 1.35;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 8px;
+  margin-top: 4px;
+}

@@ -1,0 +1,145 @@
+import React from 'react';
+import { X, ShieldCheck, FileText, Lock, Globe } from 'lucide-react';
+import './LegalModals.css';
+
+export function PrivacyPolicyModal({ isOpen, onClose }) {
+  if (!isOpen) return null;
+
+  return (
+    <div className="legal-modal-backdrop" onClick={onClose}>
+      <div className="legal-modal-window" onClick={(e) => e.stopPropagation()}>
+        <div className="legal-modal-header">
+          <div className="legal-header-title">
+            <ShieldCheck size={20} className="text-blue" />
+            <div>
+              <h3>Institutional Privacy Policy</h3>
+              <p>Compliance with Digital Personal Data Protection (DPDP) Act 2023 & Public Information Standards</p>
+            </div>
+          </div>
+          <button className="btn-modal-close" onClick={onClose} title="Close Modal">
+            <X size={18} />
+          </button>
+        </div>
+
+        <div className="legal-modal-content">
+          <section className="legal-section">
+            <h4>1. Data Minimization & Public Safety Mandate</h4>
+            <p>
+              SaansSchool operates as an open public health and environmental protection utility for Indian educational campuses.
+              We adhere strictly to data minimization principles. The application does not collect, record, track, or sell personally
+              identifiable information (PII) of schoolchildren, parents, or teaching faculty.
+            </p>
+          </section>
+
+          <section className="legal-section">
+            <h4>2. Campus-Level Aggregate Data</h4>
+            <p>
+              Student numbers displayed in exposure calculations are school-wide statistical estimates provided for mathematical
+              calculation of physical education hours avoided. No personal student records, names, medical histories, or biometric data
+              are stored or queried on our servers.
+            </p>
+          </section>
+
+          <section className="legal-section">
+            <h4>3. Telemetry & Atmospheric Ingestion</h4>
+            <p>
+              Air quality data is fetched via public APIs from the Central Pollution Control Board (CPCB), State Pollution Control Boards (SPCBs),
+              Copernicus Atmosphere Monitoring Service (CAMS), and Open-Meteo. Active fire observations are retrieved from the NASA Fire Information
+              for Resource Management System (FIRMS) Suomi-NPP VIIRS public telemetry stream. Geocoding requests are processed through
+              OpenStreetMap Nominatim without tracking cookies or user fingerprinting.
+            </p>
+          </section>
+
+          <section className="legal-section">
+            <h4>4. Infrastructure & Data Retention</h4>
+            <p>
+              All application workloads execute on Amazon Web Services (AWS) Mumbai (ap-south-1) serverless infrastructure (AWS Lambda,
+              Amazon DynamoDB, and Amazon S3). Temporary telemetry caches in DynamoDB utilize automated Time-To-Live (TTL) expiration
+              routines, deleting raw observation buffers within 7 days.
+            </p>
+          </section>
+
+          <section className="legal-section">
+            <h4>5. Contact & Data Governance Officer</h4>
+            <p>
+              For privacy governance or administrative inquiries regarding school air monitoring compliance, contact:
+              <strong> governance@saansschool.in</strong>.
+            </p>
+          </section>
+        </div>
+
+        <div className="legal-modal-footer">
+          <span className="effective-date">Effective: Academic Session 2026–27 | Version 1.2 (Production)</span>
+          <button className="btn-legal-confirm" onClick={onClose}>Acknowledge & Close</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function TermsModal({ isOpen, onClose }) {
+  if (!isOpen) return null;
+
+  return (
+    <div className="legal-modal-backdrop" onClick={onClose}>
+      <div className="legal-modal-window" onClick={(e) => e.stopPropagation()}>
+        <div className="legal-modal-header">
+          <div className="legal-header-title">
+            <FileText size={20} className="text-blue" />
+            <div>
+              <h3>Terms & Institutional Conditions of Service</h3>
+              <p>Operational Framework for Educational Campus Air Quality Mitigation</p>
+            </div>
+          </div>
+          <button className="btn-modal-close" onClick={onClose} title="Close Modal">
+            <X size={18} />
+          </button>
+        </div>
+
+        <div className="legal-modal-content">
+          <section className="legal-section">
+            <h4>1. Purpose of the System</h4>
+            <p>
+              SaansSchool is designed to provide headmasters, principals, and administrative officers with deterministic, timely environmental
+              risk insights prior to the start of morning school hours. Directives generated by this console are advisory in nature and
+              align with the Graded Response Action Plan (GRAP) and CPCB National Air Quality Index (NAQI) guidelines.
+            </p>
+          </section>
+
+          <section className="legal-section">
+            <h4>2. Data Authenticity & Calibration</h4>
+            <p>
+              Ground observations reflect calibrated sensors from official Continuous Ambient Air Quality Monitoring Stations (CAAQMS).
+              Satellite thermal anomalies represent infrared radiometric signatures detected by NASA VIIRS sensors. Users acknowledge that
+              micro-climatic factors (e.g., hyper-local street construction, localized brick kilns, or micro-topography) may create localized
+              variances between school gates and reference monitoring stations.
+            </p>
+          </section>
+
+          <section className="legal-section">
+            <h4>3. Permitted Institutional Use</h4>
+            <p>
+              Principals, PTAs, educational trusts, municipal education departments, and researchers may freely utilize SaansSchool to
+              schedule indoor physical education, automate parent circulars, and audit exposure mitigation metrics without licensing fees.
+              Commercial resale or redistribution of sensor feeds without attribution is strictly prohibited.
+            </p>
+          </section>
+
+          <section className="legal-section">
+            <h4>4. Operational Continuity & AWS Hosting</h4>
+            <p>
+              SaansSchool is provisioned using AWS Serverless Application Model (SAM) architectures. While high availability is maintained
+              through redundant multi-zone cloud services, administrative teams should always maintain offline protocol copies for severe
+              environmental emergency days.
+            </p>
+          </section>
+        </div>
+
+        <div className="legal-modal-footer">
+          <span className="effective-date">Governing Jurisdiction: New Delhi, India | Last Updated: October 2026</span>
+          <button className="btn-legal-confirm" onClick={onClose}>Acknowledge & Close</button>
+        </div>
+      </div>
+    </div>
+  );
+}

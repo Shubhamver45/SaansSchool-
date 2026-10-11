@@ -1,0 +1,135 @@
+/* HealthAdviceGrid Light Theme CSS */
+.health-advice-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.action-badges-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.action-badge-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid;
+  background: #ffffff;
+  transition: var(--transition);
+}
+
+.action-badge-item:hover {
+  transform: translateY(-2px);
+}
+
+.action-lbl {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.action-val {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.badge-safe {
+  border-color: #a7f3d0;
+  background: #ecfdf5;
+  color: #065f46;
+}
+.badge-safe .action-val { color: #065f46; }
+
+.badge-warning {
+  border-color: #fde68a;
+  background: #fffbeb;
+  color: #92400e;
+}
+.badge-warning .action-val { color: #92400e; }
+
+.badge-danger {
+  border-color: #fecaca;
+  background: #fef2f2;
+  color: #991b1b;
+}
+.badge-danger .action-val { color: #991b1b; }
+
+.badge-critical {
+  border-color: #fecdd3;
+  background: #fff1f2;
+  color: #881337;
+}
+.badge-critical .action-val { color: #881337; }
+
+/* Persona Grid */
+.persona-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.persona-card {
+  padding: 18px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.persona-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.persona-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.persona-role {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.persona-text {
+  font-size: 0.82rem;
+  color: #475569;
+  line-height: 1.45;
+}
+
+@media (max-width: 1024px) {
+  .action-badges-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .persona-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .action-badges-bar {
+    grid-template-columns: 1fr;
+  }
+  .persona-grid {
+    grid-template-columns: 1fr;
+  }
+}

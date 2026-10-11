@@ -1,0 +1,221 @@
+/* AlertsPage Light Theme CSS */
+.alerts-page {
+  padding: 32px 24px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.alerts-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.alerts-page-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.alerts-page-subtitle {
+  font-size: 0.88rem;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.safety-section {
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.safety-section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.safety-icon-bubble {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.safety-icon-bubble.school {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.safety-icon-bubble.fire {
+  background: #fff7ed;
+  color: #ea580c;
+}
+
+.safety-icon-bubble.mask {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.safety-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.safety-subtitle {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+/* Matrix Table */
+.matrix-table-wrapper {
+  overflow-x: auto;
+}
+
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.matrix-table th {
+  padding: 12px 14px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #64748b;
+  background: #f8fafc;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.matrix-table td {
+  padding: 14px;
+  font-size: 0.84rem;
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
+  line-height: 1.45;
+}
+
+.matrix-table tr.highlight-row {
+  background: #f0fdf4;
+}
+
+.aqi-range-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid;
+  background: #ffffff;
+}
+
+.safety-grid-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.advisory-card {
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.advisory-text {
+  font-size: 0.88rem;
+  color: #475569;
+  line-height: 1.55;
+}
+
+.advisory-tips {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tip-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: #334155;
+  background: #f8fafc;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.tip-icon {
+  color: #10b981;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.mask-grades-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mask-grade-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.grade-tag {
+  font-size: 0.76rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.grade-tag.n95 {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+
+.grade-tag.n99 {
+  background: #f5f3ff;
+  color: #6d28d9;
+  border: 1px solid #ddd6fe;
+}
+
+.grade-tag.surgical {
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1px solid #cbd5e1;
+}
+
+.mask-grade-item p {
+  font-size: 0.82rem;
+  color: #475569;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .safety-grid-row {
+    grid-template-columns: 1fr;
+  }
+}

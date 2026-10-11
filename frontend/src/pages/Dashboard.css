@@ -1,0 +1,302 @@
+/* Dashboard Ultra-Clean Light Mix Design */
+.dashboard-page {
+  padding: 28px 24px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.dashboard-loading {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: #64748b;
+  text-align: center;
+}
+
+.dashboard-loading h2 {
+  color: #0f172a;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* Hero Section */
+.hero-location-card {
+  padding: 32px 36px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 26px;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-location-card::after {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.hero-status-pills {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.loc-mode-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #475569;
+  background: #f1f5f9;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-hero-refresh {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  font-family: var(--font-main);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-hero-refresh:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #0f172a;
+  transform: translateY(-1px);
+}
+
+.btn-hero-refresh:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.hero-main-content {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  align-items: center;
+  gap: 36px;
+}
+
+.hero-text-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-caption {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #2563eb;
+  margin-bottom: 6px;
+}
+
+.hero-city-name {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  margin-bottom: 8px;
+}
+
+.hero-coords-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: #64748b;
+  margin-bottom: 24px;
+}
+
+.coords-tag {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  background: #f1f5f9;
+  padding: 3px 8px;
+  border-radius: 6px;
+  color: #475569;
+  font-weight: 600;
+}
+
+.dot-divider {
+  color: #cbd5e1;
+}
+
+.updated-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Weather Strip */
+.weather-micro-strip {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 20px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  flex-wrap: wrap;
+}
+
+.weather-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.weather-icon {
+  flex-shrink: 0;
+}
+
+.text-temp { color: #f97316; }
+.text-humidity { color: #0284c7; }
+.text-wind { color: #0d9488; }
+.text-uv { color: #eab308; }
+
+.weather-lbl {
+  display: block;
+  font-size: 0.68rem;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.weather-val {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Section Blocks */
+.section-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+
+.section-subtitle {
+  font-size: 0.84rem;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.data-source-tag {
+  font-size: 0.74rem;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+/* Pollutants Grid */
+.pollutants-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* Featured Cities Grid */
+.featured-cities-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 1024px) {
+  .hero-main-content {
+    grid-template-columns: 1fr;
+  }
+  .pollutants-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .featured-cities-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-city-name {
+    font-size: 2.2rem;
+  }
+  .pollutants-grid {
+    grid-template-columns: 1fr;
+  }
+  .featured-cities-grid {
+    grid-template-columns: 1fr;
+  }
+  .weather-micro-strip {
+    gap: 12px;
+  }
+}
+
+/* Air Track Problem Solvers Section */
+.air-track-solvers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 960px) {
+  .air-track-solvers-grid {
+    grid-template-columns: 1fr;
+  }
+}

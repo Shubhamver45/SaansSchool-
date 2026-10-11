@@ -1,0 +1,200 @@
+/* StubbleSmokeRadar Light Theme CSS */
+.stubble-radar-card {
+  padding: 24px 26px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.stubble-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stubble-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.stubble-icon-bubble {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #fff7ed;
+  color: #ea580c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stubble-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.stubble-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #ea580c;
+  background: #fff7ed;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.fire-count-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #c2410c;
+  background: #ffedd5;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+}
+
+.stubble-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.stubble-subtitle {
+  font-size: 0.82rem;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.stubble-banners-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.trajectory-banner, .inversion-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.banner-icon-col {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.banner-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b;
+  letter-spacing: 0.04em;
+}
+
+.banner-main-text {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-top: 2px;
+  line-height: 1.35;
+}
+
+.stubble-hotspots-table-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.table-caption {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.hotspots-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.hotspot-tile {
+  padding: 12px 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tile-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.spot-region {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.spot-intensity {
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.spot-intensity.high {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.spot-intensity.moderate {
+  background: #ffedd5;
+  color: #c2410c;
+}
+
+.spot-intensity.low {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.tile-counts {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.74rem;
+  color: #64748b;
+}
+
+.spot-fires {
+  font-weight: 700;
+  color: #ea580c;
+}
+
+@media (max-width: 900px) {
+  .stubble-banners-grid {
+    grid-template-columns: 1fr;
+  }
+  .hotspots-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .hotspots-grid {
+    grid-template-columns: 1fr;
+  }
+}
