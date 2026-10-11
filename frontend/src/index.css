@@ -188,6 +188,12 @@ body {
   padding: 0 24px;
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 0 12px;
+  }
+}
+
 /* Leaflet Map styles */
 .leaflet-container {
   font-family: var(--font-main) !important;
