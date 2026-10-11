@@ -10,9 +10,9 @@
 
 ---
 
-## 🌟 The 5 Hackathon Air Track Pillars (100% Implemented & Live)
+## 🌟 Core System Architecture & Solution Pillars
 
-| Hackathon Mandate Pillar | How SaansSchool Solves It | Technical & Mathematical Implementation |
+| Platform Solution Pillar | How SaansSchool Solves It | Technical & Mathematical Implementation |
 | :--- | :--- | :--- |
 | **1. AQI Standard Engine** | Replaces generic international AQI with India's official **Central Pollution Control Board (CPCB) NAQI** formula. | Piecewise linear interpolation across 6 continuous pollutants ($\text{PM}_{2.5}, \text{PM}_{10}, \text{NO}_2, \text{SO}_2, \text{CO}, \text{O}_3$) with dominant pollutant sub-index evaluation. |
 | **2. Pollution Exposure Defense & CleanAir Routing** | Protects peak child respiratory vulnerability during morning commute & physical education (PE). | **"Outdoor Student-Hours Avoided"** impact metric + **CleanAir Commute Exposure Router** (comparing arterial highways vs tree-canopied corridors to cut inhaled dose by **52.8%**). |
@@ -53,9 +53,9 @@ $$\text{Dose}_{\mu\text{g}} = \sum_{i=1}^{n} \left( C_{\text{segment}, i} \times
 
 ---
 
-## 🏆 Project Defense Across the 4 Hackathon Judging Criteria
+## 🏛️ Platform Architecture & Engineering Overview
 
-### 01 | Idea and Impact (Air Track)
+### 01 | Problem Analysis and Real-World Impact
 - **The Core Problem:** Every winter and during seasonal harvest burning, North and Central India suffer catastrophic air pollution spikes (AQI 400–500+). Schoolchildren suffer peak exposure during 6:30 AM bus rides, 8:00 AM open-air assemblies, and outdoor physical education (PE). Traditional weather applications provide delayed 24-hour city-wide averages released long after children have already inhaled toxic smoke.
 - **The Hyperlocal Fix:**
   - Connects each campus to its nearest continuous ground CPCB CAAQMS station down to the exact kilometer.
@@ -66,10 +66,10 @@ $$\text{Dose}_{\mu\text{g}} = \sum_{i=1}^{n} \left( C_{\text{segment}, i} \times
   - Re-routes school buses along CleanAir green corridors, avoiding **52.8% of black carbon and PM2.5 inhalation**.
   - Provides a blueprint for **₹2,800 DIY Corsi-Rosenthal classroom purifiers** (25x cheaper than commercial HEPA units).
 
-### 02 | Built on AWS (Cloud & Open Source)
+### 02 | Cloud Architecture (AWS Serverless)
 - **AWS Serverless Application Model (SAM):** Complete infrastructure declared in `template.yaml` ready for local development (`sam local start-api`) or production deployment (`sam deploy`).
 - **AWS Polly:** Cloud text-to-speech synthesis generating instant 6:00 AM audio morning announcements for school PA systems in **Indian English** (`Aditi`) and **Hindi** (`Kajal`).
-- **AWS Strands Agents SDK & Amazon Bedrock:** Multi-agent reasoning coordinating environmental data ingestion, health risk classification, and natural language circular dispatch across **7 Indian languages** (English, Hindi, Punjabi, Marathi, Bengali, Tamil, Telugu).
+- **AWS Multi-Agent Services:** Data pipeline coordinating environmental data ingestion, health risk classification, and natural language circular dispatch across **7 Indian languages** (English, Hindi, Punjabi, Marathi, Bengali, Tamil, Telugu).
 - **AWS Lambda & Amazon API Gateway:** Microservices handling CPCB NAQI math, wind bearing trigonometry, CADR engineering, and action audit logs.
 - **Amazon DynamoDB:** Stores telemetry buffers with automated Time-To-Live (TTL) expiration, plus an immutable audit log of headmaster protocol sign-offs.
 - **Amazon SES & SNS:** Broadcasts automated email and SMS circulars to parents upon headmaster authorization.
@@ -78,9 +78,10 @@ $$\text{Dose}_{\mu\text{g}} = \sum_{i=1}^{n} \left( C_{\text{segment}, i} \times
 
 ### 03 | Design and Usability
 - **Built for High-Pressure 6:00 AM School Decision-Making:** Unmistakable color-coded directives (Green, Amber, Red, Emergency), nearest CAAQMS station distance, and 1-click headmaster action toggles.
-- **Zero "Vibe-Coded" SaaS Tropes:**
+- **Strict Institutional UI Standards:**
+  - Clean, high-contrast typography and statutory government color schemes.
   - No purple gradients or neon glow effects.
-  - No pill-shaped buttons (`border-radius: 9999px`); strictly institutional 4px/6px radii.
+  - Clean institutional 4px/6px border radii.
   - No fake reviews, vanity counters, or marketing fluff.
   - No emoji icons in copy or badges.
   - No over-the-top scroll animations or cursor effects.

@@ -406,7 +406,7 @@ async def fetch_live_nasa_firms_detections() -> List[Dict[str, Any]]:
     url = "https://firms.modaps.eosdis.nasa.gov/data/active_fire/suomi-npp-viirs-c2/csv/SUOMI_VIIRS_C2_South_Asia_24h.csv"
     try:
         async with httpx.AsyncClient(timeout=10.0, follow_redirects=True) as client:
-            resp = await client.get(url, headers={"User-Agent": "SaansSchool-Hackathon/1.0"})
+            resp = await client.get(url, headers={"User-Agent": "SaansSchool-AirDefense/1.0"})
             if resp.status_code == 200:
                 reader = csv.DictReader(io.StringIO(resp.text))
                 detections = []

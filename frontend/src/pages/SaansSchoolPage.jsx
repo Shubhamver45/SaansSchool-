@@ -21,7 +21,6 @@ import { BadDaySimulator } from '../components/BadDaySimulator';
 import { CommuteExposureRouter } from '../components/CommuteExposureRouter';
 import { IndoorCADRCalculator } from '../components/IndoorCADRCalculator';
 import { StubbleTrajectoryTimeline } from '../components/StubbleTrajectoryTimeline';
-import { JudgeEvaluationModal } from '../components/JudgeEvaluationModal';
 import { SaansLogo } from '../components/SaansLogo';
 import './SaansSchoolPage.css';
 
@@ -70,7 +69,6 @@ export function SaansSchoolPage() {
   const [activeZone, setActiveZone] = useState('All');
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
   const [showTermsModal, setShowTermsModal] = useState(false);
-  const [showJudgeModal, setShowJudgeModal] = useState(false);
   const [activeViewTab, setActiveViewTab] = useState('live');
 
   // Dynamic School Search state
@@ -341,18 +339,9 @@ export function SaansSchoolPage() {
               <span>Principal: <strong>{currentSchool?.principal || 'Principal'}</strong></span>
             </div>
 
-            <button className="btn-blueprint-trigger" onClick={handleOpenArchitecture}>
-              <Award size={14} />
-              <span>AWS Blueprint</span>
-            </button>
-
-            <button 
-              className="btn-judge-deck-trigger" 
-              onClick={() => setShowJudgeModal(true)}
-              title="Open Official Hackathon Judging Verification Deck"
-            >
-              <Award size={14} className="text-amber" />
-              <span>Judge Verification Deck</span>
+            <button className="btn-blueprint-trigger" onClick={handleOpenArchitecture} title="View AWS Cloud Architecture & SAM Pipeline Specification">
+              <Layers size={14} />
+              <span>System Architecture</span>
             </button>
           </div>
         </div>
@@ -431,7 +420,7 @@ export function SaansSchoolPage() {
                 onClick={() => setActiveViewTab('live')}
               >
                 <ShieldCheck size={15} />
-                <span>1. 6:00 AM Decision & Ground Air</span>
+                <span>1. Live Air Telemetry & Status</span>
               </button>
 
               <button 
@@ -439,7 +428,7 @@ export function SaansSchoolPage() {
                 onClick={() => setActiveViewTab('commute')}
               >
                 <Bus size={15} />
-                <span>2. CleanAir Commute Router</span>
+                <span>2. Commute Route Exposure</span>
               </button>
 
               <button 
@@ -447,7 +436,7 @@ export function SaansSchoolPage() {
                 onClick={() => setActiveViewTab('indoor')}
               >
                 <Wrench size={15} />
-                <span>3. Indoor DIY Purifier Lab</span>
+                <span>3. Indoor Filtration & CADR</span>
               </button>
 
               <button 
@@ -455,7 +444,7 @@ export function SaansSchoolPage() {
                 onClick={() => setActiveViewTab('stubble')}
               >
                 <Flame size={15} />
-                <span>4. Stubble 16h Plume Radar</span>
+                <span>4. Biomass & Wind Trajectory</span>
               </button>
 
               <button 
@@ -463,7 +452,7 @@ export function SaansSchoolPage() {
                 onClick={() => setActiveViewTab('simulator')}
               >
                 <Sliders size={15} />
-                <span>5. Bad-Day Simulator</span>
+                <span>5. Scenario Exposure Simulator</span>
               </button>
             </nav>
 
@@ -922,8 +911,8 @@ export function SaansSchoolPage() {
               <div className="modal-title-col">
                 <Award size={24} className="text-amber" />
                 <div>
-                  <h2 className="modal-title">SaansSchool — AWS Serverless Architecture</h2>
-                  <p className="modal-sub">Built strictly for the AWS Air Track Hackathon criteria</p>
+                  <h2 className="modal-title">SaansSchool — AWS Cloud Architecture</h2>
+                  <p className="modal-sub">Serverless Telemetry, Evaluation & Notification Architecture</p>
                 </div>
               </div>
               <button className="btn-modal-x" onClick={() => setShowArchModal(false)}>✕</button>
@@ -997,16 +986,9 @@ export function SaansSchoolPage() {
         </div>
       </footer>
 
-      {/* Privacy Policy, Terms, and Judge Evaluation Modals */}
+      {/* Privacy Policy & Terms Modals */}
       <PrivacyPolicyModal isOpen={showPrivacyModal} onClose={() => setShowPrivacyModal(false)} />
       <TermsModal isOpen={showTermsModal} onClose={() => setShowTermsModal(false)} />
-      <JudgeEvaluationModal 
-        isOpen={showJudgeModal} 
-        onClose={() => setShowJudgeModal(false)} 
-        onNavigateTab={(tab) => {
-          setActiveViewTab(tab);
-        }} 
-      />
     </div>
   );
 }

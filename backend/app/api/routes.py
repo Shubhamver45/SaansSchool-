@@ -1,4 +1,4 @@
-"""API routes for AirWatch with 100% Real-Time Data, AWS Strands, and Hackathon Impact Features."""
+"""API routes for SaansSchool with 100% Real-Time Data and School Air Defense Architecture."""
 from fastapi import APIRouter, HTTPException, Query
 from typing import List, Optional, Dict, Any
 from datetime import datetime, timezone
@@ -335,9 +335,9 @@ async def get_map_hotspots():
     return {"hotspots": hotspots}
 
 
-@router.get("/aws/architecture", summary="AWS Architecture and Hackathon Compliance Specification")
+@router.get("/aws/architecture", summary="AWS Architecture and Cloud Specification")
 async def get_aws_architecture():
-    """Returns official AWS architectural breakdown, open-source tools used, and criteria mapping for judges."""
+    """Returns official AWS architectural breakdown and system data pipeline."""
     return {
         "track": "Air (Help People Breathe Easier)",
         "track_focus": [
@@ -504,7 +504,7 @@ async def get_aws_cloud_status():
 
 @router.get("/saans/architecture", summary="SaansSchool AWS Serverless Architecture Blueprint")
 async def get_saans_aws_architecture():
-    """Returns the official AWS serverless pipeline matching the hackathon build plan."""
+    """Returns the official AWS serverless pipeline and architectural blueprint."""
     return {
         "pipeline": [
             {

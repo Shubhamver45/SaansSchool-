@@ -307,27 +307,6 @@
   transform: translateY(-1px);
 }
 
-.btn-judge-deck-trigger {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.5rem 1rem;
-  background: #0f172a;
-  color: #ffffff;
-  border: 1px solid #1e293b;
-  border-radius: 4px;
-  font-size: 0.84rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.2);
-}
-
-.btn-judge-deck-trigger:hover {
-  background: #1e293b;
-  transform: translateY(-1px);
-}
-
 /* Preset Pilot Campus Switcher Subbar */
 .campus-switcher-subbar {
   background: #f8fafc;
@@ -1656,8 +1635,7 @@
 
   .btn-refresh-live,
   .cognito-user-card,
-  .btn-blueprint-trigger,
-  .btn-judge-deck-trigger {
+  .btn-blueprint-trigger {
     width: 100%;
     justify-content: center;
     font-size: 0.74rem;
@@ -2100,8 +2078,7 @@
 
   .btn-refresh-live,
   .cognito-user-card,
-  .btn-blueprint-trigger,
-  .btn-judge-deck-trigger {
+  .btn-blueprint-trigger {
     font-size: 0.7rem;
     padding: 0.4rem 0.25rem;
   }

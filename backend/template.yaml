@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  SaansSchool — Automated School Air Defense System (AWS Air Track Hackathon)
+  SaansSchool — Automated School Air Defense System
   Serverless pipeline integrating live CPCB CAAQMS sensor telemetry,
   NASA FIRMS VIIRS satellite thermal detections, and Open-Meteo wind vectors
   with Amazon EventBridge, AWS Lambda, Amazon DynamoDB, Amazon Bedrock, and Amazon SES.

@@ -47,7 +47,7 @@ export const fetchAlertByCoords = (lat, lon, name = null) =>
 export const fetchAlert = (city) => 
   api.get(`/alert/${encodeURIComponent(city)}`).then(r => r.data);
 
-// AI Health Recommendations
+// Health Recommendations Engine
 export const fetchAIRecommend = (city) => 
   api.get(`/ai/recommend/${encodeURIComponent(city)}`).then(r => r.data);
 
@@ -75,7 +75,7 @@ export const fetchStubbleHotspots = () =>
 export const fetchHotspots = () => 
   api.get('/map/hotspots').then(r => r.data);
 
-// AWS Architecture & Hackathon Rubric Specification
+// AWS Architecture Specification
 export const fetchAwsArchitecture = () =>
   api.get('/aws/architecture').then(r => r.data);
 

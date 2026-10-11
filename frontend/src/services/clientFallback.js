@@ -1207,7 +1207,7 @@ export async function getDynamicSchoolStatusLive(schoolId) {
       },
       school_safety_bad_days: {
         title: "School Safety on Bad Days",
-        engine: "Deterministic 6:00 AM Evaluation in Code (Zero AI Hallucinations)",
+        engine: "Deterministic Statutory Rule Engine (CPCB NAQI / CAQM Protocol)",
         current_status: statusText,
         grap_stage: aqiInfo.grap,
         broadcast_options: [

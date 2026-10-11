@@ -6,8 +6,8 @@ from mangum import Mangum
 from app.api.routes import router
 
 app = FastAPI(
-    title="AirWatch API",
-    description="Real-time Air Quality Monitoring & Alert Platform — AWS AIR Hackathon",
+    title="SaansSchool API",
+    description="Real-time Air Quality Monitoring & Campus Exposure Mitigation Platform",
     version="1.0.0",
     docs_url="/docs",
     redoc_url="/redoc",
