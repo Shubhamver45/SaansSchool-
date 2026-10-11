@@ -1762,22 +1762,64 @@
     font-size: 0.76rem;
   }
 
-  /* Hero & Layout Grids */
+  /* Hero & Layout Grids: minmax(0, 1fr) prevents content blowout */
   .hero-command-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
+    width: 100%;
+    box-sizing: border-box;
   }
 
-  .command-card {
+  .dashboard-two-col-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .command-card,
+  .dash-panel {
     padding: 1.15rem;
     border-radius: 0.75rem;
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
     box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* Status Hero Card Top Bar: Stack badges vertically */
+  .status-top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .status-giant-badge {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  .grap-level-badge {
+    font-size: 0.76rem;
+    padding: 0.3rem 0.65rem;
+    width: 100%;
+    box-sizing: border-box;
+    word-break: break-word;
+    text-align: left;
   }
 
   .hero-status-title {
     font-size: 1.35rem;
     line-height: 1.25;
+    word-break: break-word;
+  }
+
+  .hero-status-desc {
+    font-size: 0.82rem;
+    line-height: 1.45;
+    word-break: break-word;
   }
 
   .cohort-vulnerability-strip {
@@ -1785,28 +1827,58 @@
     gap: 0.4rem;
   }
 
-  .dashboard-two-col-row {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .dash-panel {
-    padding: 1.15rem;
-    width: 100%;
-    box-sizing: border-box;
+  .station-proximity-row {
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    font-size: 0.75rem;
   }
 
   .panel-header-row {
     flex-direction: column;
     align-items: stretch;
     gap: 0.5rem;
+    width: 100%;
+  }
+
+  .panel-title {
+    font-size: 1.15rem;
+    word-break: break-word;
+  }
+
+  .panel-sub {
+    font-size: 0.78rem;
+    word-break: break-word;
   }
 
   .btn-select-all {
     width: 100%;
     text-align: center;
     box-sizing: border-box;
-    padding: 0.5rem;
+    padding: 0.55rem;
+    font-size: 0.78rem;
+  }
+
+  /* Checklist items flex protection */
+  .action-checkcard {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.75rem 0.85rem;
+    gap: 0.75rem;
+  }
+
+  .checkcard-content {
+    min-width: 0;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .checkcard-label {
+    font-size: 0.85rem;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    line-height: 1.35;
   }
 
   /* Multilingual Tabs */
@@ -1834,16 +1906,57 @@
     font-size: 0.75rem;
   }
 
+  /* Circular Broadcaster Header & Subject */
+  .circular-paper-card {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 0.85rem;
+  }
+
+  .circular-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    width: 100%;
+  }
+
+  .circular-subject {
+    font-size: 0.82rem;
+    line-height: 1.35;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    max-width: 100%;
+  }
+
+  .circular-body-text {
+    font-size: 0.78rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
   .advisory-toolbar {
     flex-direction: column;
     align-items: stretch;
     gap: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .advisory-toolbar .btn-tool {
     width: 100%;
     box-sizing: border-box;
     justify-content: center;
+    white-space: normal;
+    text-align: center;
+    font-size: 0.8rem;
+    padding: 0.65rem 0.85rem;
   }
 
   /* Forecast & Indoor Protocols */
@@ -1862,10 +1975,38 @@
     min-width: 44px;
   }
 
+  /* Stubble Fire Radar */
+  .radar-honest-banner {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 0.65rem 0.85rem;
+  }
+
+  .radar-honest-text {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    font-size: 0.8rem;
+  }
+
   .radar-stats-row {
     grid-template-columns: 1fr 1fr;
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
     gap: 0.5rem;
     padding: 0.65rem;
+  }
+
+  .r-stat-box {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .r-val {
+    font-size: 0.82rem;
+    word-break: break-word;
+    overflow-wrap: anywhere;
   }
 
   .indoor-rules-grid {
